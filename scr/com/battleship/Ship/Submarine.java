@@ -1,7 +1,7 @@
 package scr.com.battleship.Ship;
 
 public class Submarine extends Ships{
-    public Submarine(int size) {
+    public Submarine() {
         super(4);
     }
 

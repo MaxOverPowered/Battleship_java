@@ -1,7 +1,7 @@
 package scr.com.battleship.Ship;
 
 public class Destroyer extends Ships{
-    public Destroyer(int size) {
+    public Destroyer() {
         super(5);
     }
 

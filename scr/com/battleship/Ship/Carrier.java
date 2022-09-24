@@ -1,7 +1,7 @@
 package scr.com.battleship.Ship;
 
 public class Carrier extends Ships{
-    public Carrier(int size) {
+    public Carrier() {
         super(1);
     }
 
