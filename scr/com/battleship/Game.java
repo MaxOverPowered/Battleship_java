@@ -1,7 +1,7 @@
 package scr.com.battleship;
 
-import scr.com.battleship.Ship.Ships;
-import scr.com.battleship.Ship.orientation.Orienations;
+import scr.com.battleship.Ship.Ship;
+import scr.com.battleship.Ship.Orientation;
 
 import java.util.List;
 
@@ -31,7 +31,6 @@ public class Game {
             Board playerBoard = player.getPlayerBoard();
             Board shootingBoard = player.getShootingBoard();
             Player enemyPlayer = getAnotherPlayer(player);
-
             display.printMessage(player.toString());
             display.printBoard(playerBoard);
             display.printBoard(shootingBoard);
@@ -75,13 +74,13 @@ public class Game {
 
     private void playerSetsShips(Player player) {
         Coordinates coordinates;
-        Orienations orientation;
+        Orientation orientation;
         List<Spot> validSpots;
 
         display.printMessage(player.toString());
-        for (Ships ship : player.getShipsList()) {
+        for (Ship ship : player.getShipsList()) {
             if (ship.getSize() != 1) {
-                display.printMessage("Place your " + ship + "! Size: " + ship.getSize());
+                display.printMessage("Place your " + ship + "! Size: " + ship.getSize()+"\n");
                 display.printBoard(player.getPlayerBoard());
                 coordinates = input.getCoordinates();
                 display.askForOrientation();
@@ -92,7 +91,7 @@ public class Game {
                 display.printMessage("Place your " + ship + "! Size: " + ship.getSize());
                 display.printBoard(player.getPlayerBoard());
                 coordinates = input.getCoordinates();
-                validSpots = player.getPlayerBoard().getSpotsForShip(ship.getSize(),Orienations.RIGHT, coordinates);
+                validSpots = player.getPlayerBoard().getSpotsForShip(ship.getSize(), Orientation.RIGHT, coordinates);
                 player.placeShip(ship, validSpots);
 
             }

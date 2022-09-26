@@ -5,12 +5,12 @@ import scr.com.battleship.Spot;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Ships {
+public abstract class Ship {
     private final int size;
     private boolean sunk;
     private final List<ShipPart> shipParts;
 
-    public Ships(int size) {
+    public Ship(int size) {
         this.size = size;
         this.sunk = false;
         this.shipParts = new ArrayList<>();
@@ -34,12 +34,11 @@ public abstract class Ships {
     }
 
     public void checkShipPartsStatuses() {
-        if (shipParts.stream().noneMatch(shipPart -> (shipPart.getStatus().equals(ShipStatus.STRONG)))) {
+        if (shipParts.stream().noneMatch(shipPart -> shipPart.getStatus().equals(ShipStatus.STRONG))) {
             for (ShipPart part : shipParts) {
                 part.asSunk();
             }
             this.sunk = true;
-
         }
     }
 }

@@ -7,18 +7,18 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 public class Player {
-    private final List<Ships> shipsList;
+    private final List<Ship> shipsList;
     private final int playerNumber;
     private final Board playerBoard;
     private final Board shootingBoard;
-    private final int size;
+    private final int boardSize;
 
-    public Player(int playerNumber, int size) {
-        this.size = size;
+    public Player(int playerNumber, int boardSize) {
+        this.boardSize = boardSize;
         this.shipsList = new ArrayList<>();
         this.playerNumber = playerNumber;
-        this.playerBoard = new Board(size);
-        this.shootingBoard = new Board(size);
+        this.playerBoard = new Board(boardSize);
+        this.shootingBoard = new Board(boardSize);
         assignShips();
     }
 
@@ -31,13 +31,13 @@ public class Player {
         return shootingBoard;
     }
 
-    public List<Ships> getShipsList() {
+    public List<Ship> getShipsList() {
         return shipsList;
     }
 
 
     public void checkPlayerShips() {
-        for (Ships ship : shipsList) {
+        for (Ship ship : shipsList) {
             ship.checkShipPartsStatuses();
         }
         removeSunkShip();
@@ -50,16 +50,17 @@ public class Player {
 
     private void removeSunkShip() {
         try {
-            Ships ship = shipsList.stream()
-                    .filter(Ships::isSunk)
+            Ship ship = shipsList.stream()
+                    .filter(Ship::isSunk)
                     .findAny()
                     .orElse(null);
             shipsList.remove(ship);
         } catch (NoSuchElementException ignored) {
+
         }
     }
 
-    public void placeShip(Ships ship, List<Spot> validSpots) {
+    public void placeShip(Ship ship, List<Spot> validSpots) {
         if (validSpots.size() == ship.getSize()) {
             ship.setShipParts(validSpots);
             playerBoard.setBoardSpotEmpty(validSpots);
@@ -67,12 +68,10 @@ public class Player {
     }
 
     private void assignShips() {
-        this.shipsList.add(new Carrier());
-        this.shipsList.add(new Battleship());
-        this.shipsList.add(new Cruiser());
-        this.shipsList.add(new Submarine());
-        this.shipsList.add(new Destroyer());
+        shipsList.add(new Carrier());
+        shipsList.add(new Battleship());
+        shipsList.add(new Cruiser());
+        shipsList.add(new Submarine());
+        shipsList.add(new Destroyer());
     }
-
-
 }

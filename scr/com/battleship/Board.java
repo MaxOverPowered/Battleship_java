@@ -1,9 +1,8 @@
 package scr.com.battleship;
 
-import scr.com.battleship.Ship.orientation.Orienations;
+import scr.com.battleship.Ship.Orientation;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Board {
@@ -34,7 +33,7 @@ public class Board {
     public int getSize() {
         return size;
     }
-    public List<Spot> getSpotsForShip(int shipSize, Orienations orientation, Coordinates coordinates) {
+    public List<Spot> getSpotsForShip(int shipSize, Orientation orientation, Coordinates coordinates) {
         List<Spot> validSpots = new ArrayList<>();
         switch (orientation) {
             case RIGHT -> {
