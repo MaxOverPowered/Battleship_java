@@ -4,18 +4,21 @@ import scr.com.battleship.Ship.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class Player {
     private final List<Ships> shipsList;
     private final int playerNumber;
     private final Board plyerBoard;
     private final Board shootingBoard;
+    private final int size;
 
-    public Player(int playerNumber) {
+    public Player(int playerNumber, int size) {
+        this.size = size;
         this.shipsList = new ArrayList<>();
         this.playerNumber = playerNumber;
-        this.plyerBoard = new Board();
-        this.shootingBoard = new Board();
+        this.plyerBoard = new Board(size);
+        this.shootingBoard = new Board(size);
         assignShips();
     }
 
@@ -31,6 +34,28 @@ public class Player {
         return shipsList;
     }
 
+
+    public void checkPlayerShips() {
+        for (Ships ship : shipsList) {
+            ship.checkShipPartsStatuses();
+        }
+        removeSunkShip();
+    }
+
+    @Override
+    public String toString() {
+        return "Player " + playerNumber;
+    }
+
+    private void removeSunkShip() {
+        try {
+            Ships ship = shipsList.stream()
+                    .filter(Ships::isSunk)
+                    .findAny()
+                    .orElse(null);
+            shipsList.remove(ship);
+        } catch (NoSuchElementException ignored) {}
+    }
     private void assignShips() {
         this.shipsList.add(new Carrier());
         this.shipsList.add(new Battleship());
