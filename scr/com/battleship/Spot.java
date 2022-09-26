@@ -29,6 +29,10 @@ public class Spot {
         this.sign = sign;
     }
 
+    public void setMissSign() {
+        this.sign = '0';
+    }
+
     public void setShipPart(ShipPart shipPart) {
         this.shipPart = shipPart;
     }
