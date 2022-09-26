@@ -26,7 +26,11 @@ public class Board {
     public void setSize(int size) {
         this.size = size;
     }
-
+    public void setBoardSpotEmpty(List<Spot> spots) {
+        for (Spot spot : spots) {
+            spot.setEmpty(false);
+        }
+    }
     public int getSize() {
         return size;
     }
@@ -64,7 +68,22 @@ public class Board {
         }
         return validSpots;
     }
+    public Spot getSpot(Coordinates coordinates) {
 
+        return spots[coordinates.getX()][coordinates.getY()];
+    }
+
+    public void markHit(Coordinates coordinates, Board enemyBoard) {
+        spots[coordinates.getX()][coordinates.getY()] = enemyBoard.getSpots()[coordinates.getX()][coordinates.getY()];
+    }
+
+    public boolean isHit(Coordinates coordinates) {
+        return !spots[coordinates.getX()][coordinates.getY()].isEmpty();
+    }
+
+    public void markMiss(Coordinates coordinates) {
+        spots[coordinates.getX()][coordinates.getY()].setMissSign();
+    }
     private void initBoard() {
         for (int row = 0; row < size; row++)
             for (int column = 0; column < size; column++)
