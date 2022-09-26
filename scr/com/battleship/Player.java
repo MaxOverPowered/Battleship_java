@@ -9,7 +9,7 @@ import java.util.NoSuchElementException;
 public class Player {
     private final List<Ships> shipsList;
     private final int playerNumber;
-    private final Board plyerBoard;
+    private final Board playerBoard;
     private final Board shootingBoard;
     private final int size;
 
@@ -17,14 +17,15 @@ public class Player {
         this.size = size;
         this.shipsList = new ArrayList<>();
         this.playerNumber = playerNumber;
-        this.plyerBoard = new Board(size);
+        this.playerBoard = new Board(size);
         this.shootingBoard = new Board(size);
         assignShips();
     }
 
-    public int getPlayerBoard() {
-        return playerNumber;
+    public Board getPlayerBoard() {
+        return playerBoard;
     }
+
 
     public Board getShootingBoard() {
         return shootingBoard;
@@ -44,7 +45,7 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player " + playerNumber;
+        return "Player " + playerNumber + " ";
     }
 
     private void removeSunkShip() {
@@ -54,8 +55,17 @@ public class Player {
                     .findAny()
                     .orElse(null);
             shipsList.remove(ship);
-        } catch (NoSuchElementException ignored) {}
+        } catch (NoSuchElementException ignored) {
+        }
     }
+
+    public void placeShip(Ships ship, List<Spot> validSpots) {
+        if (validSpots.size() == ship.getSize()) {
+            ship.setShipParts(validSpots);
+            playerBoard.setBoardSpotEmpty(validSpots);
+        }
+    }
+
     private void assignShips() {
         this.shipsList.add(new Carrier());
         this.shipsList.add(new Battleship());
