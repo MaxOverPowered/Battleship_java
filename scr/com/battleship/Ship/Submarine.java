@@ -1,8 +1,11 @@
 package scr.com.battleship.Ship;
 
-public class Submarine extends Ships{
+public class Submarine extends Ship {
+
+    private static final int SUBMARINE_SIZER = 4;
+
     public Submarine() {
-        super(4);
+        super(SUBMARINE_SIZER);
     }
 
     @Override

@@ -1,12 +1,16 @@
 package scr.com.battleship.Ship;
 
-public class Destroyer extends Ships{
+public class Destroyer extends Ship {
+
+    private static final int DESTROYER_SIZER=5;
+
     public Destroyer() {
-        super(5);
+        super(DESTROYER_SIZER);
     }
 
     @Override
     public String toString() {
         return "Destroyer";
     }
+
 }

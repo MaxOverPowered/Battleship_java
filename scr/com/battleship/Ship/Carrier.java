@@ -1,8 +1,11 @@
 package scr.com.battleship.Ship;
 
-public class Carrier extends Ships{
+public class Carrier extends Ship {
+
+    public static final int CARRIER_SIZER = 1;
+
     public Carrier() {
-        super(1);
+        super(CARRIER_SIZER);
     }
 
     @Override
