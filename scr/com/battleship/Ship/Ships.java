@@ -8,7 +8,7 @@ import java.util.List;
 public abstract class Ships {
     private final int size;
     private boolean sunk;
-    private List<ShipPart> shipParts;
+    private final List<ShipPart> shipParts;
 
     public Ships(int size) {
         this.size = size;
