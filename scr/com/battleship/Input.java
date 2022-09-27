@@ -5,19 +5,25 @@ import scr.com.battleship.Ship.Orientation;
 import java.util.Scanner;
 
 public class Input {
-    private final Scanner scanner;
+    public final Scanner scanner;
     private final Display display;
 
 
     public Input() {
         this.scanner = new Scanner(System.in);
         this.display = new Display();
+
     }
 
+    public int inputInt(){
+        display.menu();
+        int number=scanner.nextInt();
+        return number;
+    }
     public int readInput() {
         int sizeBord = 0;
         do {
-            display.printMessageInNewLine("Choose a board size between 10 and 30 ");
+            display.printMessageInNewLine("Choose a board size between 10 and 20 ");
             while (!scanner.hasNextInt()) {
                 String userScan = scanner.next();
                 if (!userScan.equalsIgnoreCase("quit")) {
@@ -33,7 +39,7 @@ public class Input {
     }
 
     private static boolean validateBoardSize(int sizeBord) {
-        return sizeBord <= 10 || sizeBord >= 30;
+        return sizeBord < 10 || sizeBord > 20;
     }
 
 
@@ -87,7 +93,7 @@ public class Input {
                     String addedDigits = (isFirstDigitValid) + "" + (isSecondDigitValid);
                     int row = Integer.parseInt(addedDigits);
                     if (Character.toString(isCharValid).matches("^[a-jA-J]*$")) {
-                        return row > 0 && row <= 10;
+                        return row > 0 && row <=12;
 
                     }
                     System.out.println("Something wrong, try again...");
