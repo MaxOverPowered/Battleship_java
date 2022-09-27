@@ -4,7 +4,6 @@ import scr.com.battleship.Ship.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 public class Player {
     private final List<Ship> shipsList;
@@ -45,19 +44,19 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player " + playerNumber + " ";
+        return "Player " + playerNumber + " \n";
     }
 
     private void removeSunkShip() {
-        try {
+//        try {
             Ship ship = shipsList.stream()
                     .filter(Ship::isSunk)
                     .findAny()
                     .orElse(null);
             shipsList.remove(ship);
-        } catch (NoSuchElementException ignored) {
+        //catch (NoSuchElementException ignored) {
 
-        }
+
     }
 
     public void placeShip(Ship ship, List<Spot> validSpots) {
