@@ -59,6 +59,10 @@ public class Player {
 
     }
 
+    public int getBoardSize() {
+        return boardSize;
+    }
+
     public void placeShip(Ship ship, List<Spot> validSpots) {
         if (validSpots.size() == ship.getSize()) {
             ship.setShipParts(validSpots);

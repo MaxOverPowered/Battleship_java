@@ -17,7 +17,7 @@ public class Game {
         player2 = new Player(2, board.getSize());
         gameIsRunning = true;
         display = new Display();
-        input = new Input();
+        input = BattleshipGame.input;
     }
 
     public void startGame() {
@@ -47,7 +47,6 @@ public class Game {
             if (gameIsRunning) {
                 display.printBoard(playerBoard);
                 display.printBoard(shootingBoard);
-                input.pressAnyKeyToContinue();
                 player = getAnotherPlayer(player);
             } else {
                 display.printBoard(shootingBoard);
@@ -86,17 +85,24 @@ public class Game {
                 display.askForOrientation();
                 orientation = input.getOrientation();
                 validSpots = player.getPlayerBoard().getSpotsForShip(ship.getSize(), orientation, coordinates);
+                while (validSpots==null){
+                    coordinates = input.getCoordinates();
+                    validSpots = player.getPlayerBoard().getSpotsForShip(ship.getSize(), orientation, coordinates);
+                }
                 player.placeShip(ship, validSpots);
             } else {
                 display.printMessage("Place your " + ship + "! Size: " + ship.getSize()+"\n");
                 display.printBoard(player.getPlayerBoard());
                 coordinates = input.getCoordinates();
                 validSpots = player.getPlayerBoard().getSpotsForShip(ship.getSize(), Orientation.RIGHT, coordinates);
+                if(validSpots==null){
+                    coordinates = input.getCoordinates();
+                    validSpots = player.getPlayerBoard().getSpotsForShip(ship.getSize(), Orientation.RIGHT, coordinates);
+                }
                 player.placeShip(ship, validSpots);
 
             }
         }
         display.printBoard(player.getPlayerBoard());
-        input.pressAnyKeyToContinue();
     }
 }

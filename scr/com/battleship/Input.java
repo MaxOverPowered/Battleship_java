@@ -7,21 +7,21 @@ import java.util.Scanner;
 public class Input {
     public final Scanner scanner;
     private final Display display;
+    int sizeBord ;
 
 
     public Input() {
         this.scanner = new Scanner(System.in);
         this.display = new Display();
-
     }
 
-    public int inputInt(){
+    public int inputInt() {
         display.menu();
-        int number=scanner.nextInt();
+        int number = scanner.nextInt();
         return number;
     }
+
     public int readInput() {
-        int sizeBord = 0;
         do {
             display.printMessageInNewLine("Choose a board size between 10 and 20 ");
             while (!scanner.hasNextInt()) {
@@ -32,13 +32,13 @@ public class Input {
                     System.exit(0);
                 }
             }
-          sizeBord= scanner.nextInt();
-        } while (validateBoardSize(sizeBord));
+            sizeBord = scanner.nextInt();
+        } while (validateBoardSize());
         display.printMessageInNewLine(String.format("%d", sizeBord));
         return sizeBord;
     }
 
-    private static boolean validateBoardSize(int sizeBord) {
+    private boolean validateBoardSize() {
         return sizeBord < 10 || sizeBord > 20;
     }
 
@@ -93,7 +93,7 @@ public class Input {
                     String addedDigits = (isFirstDigitValid) + "" + (isSecondDigitValid);
                     int row = Integer.parseInt(addedDigits);
                     if (Character.toString(isCharValid).matches("^[a-jA-J]*$")) {
-                        return row > 0 && row <=12;
+                        return row > 0 && row <= sizeBord;
 
                     }
                     System.out.println("Something wrong, try again...");
@@ -129,6 +129,4 @@ public class Input {
         }
     }
 
-    public void pressAnyKeyToContinue() {
-    }
 }
