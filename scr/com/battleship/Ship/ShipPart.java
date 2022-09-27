@@ -2,24 +2,24 @@ package scr.com.battleship.Ship;
 
 public class ShipPart {
     private ShipStatus status;
-    private char sign;
+    private String sign;
 
     public ShipPart() {
         this.status = ShipStatus.STRONG;
-        this.sign = '$';
+        this.sign = "\uD83D\uDEA2";
     }
 
     public void asHit() {
         status = ShipStatus.HIT;
-        sign = '@';
+        sign = "\uD83D\uDD25";
     }
 
     public void asSunk() {
         status = ShipStatus.SUNK;
-        sign = '*';
+        sign = " \uD83D\uDD6F ";
     }
 
-    public char getSign() {
+    public String getSign() {
         return sign;
     }
 
