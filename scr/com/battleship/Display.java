@@ -87,17 +87,18 @@ public class Display {
         System.out.println("Choose coordinates! (Example: C5 where 'C' is row and '5' is column):");
     }
     private void printBoardSigns(int size) {
-        System.out.print("    ");
+        System.out.print("     ");
         for (int j = 1; j <= size; j++) {
-            printMessage(j + " ");
-        }
+            if(j<9){
+            printMessage(j + "  ");
+        }else {printMessage(j + " ");}}
         printMessage("\n");
     }
 
     private void printLine(int size) {
         printMessage("  +");
         for (int i = 0; i < size; i++) {
-            printMessage("--");
+            printMessage("- -");
         }
         printMessage("-+");
         printMessage("\n");
