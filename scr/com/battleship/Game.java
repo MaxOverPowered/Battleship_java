@@ -88,7 +88,7 @@ public class Game {
                 validSpots = player.getPlayerBoard().getSpotsForShip(ship.getSize(), orientation, coordinates);
                 player.placeShip(ship, validSpots);
             } else {
-                display.printMessage("Place your " + ship + "! Size: " + ship.getSize());
+                display.printMessage("Place your " + ship + "! Size: " + ship.getSize()+"\n");
                 display.printBoard(player.getPlayerBoard());
                 coordinates = input.getCoordinates();
                 validSpots = player.getPlayerBoard().getSpotsForShip(ship.getSize(), Orientation.RIGHT, coordinates);
