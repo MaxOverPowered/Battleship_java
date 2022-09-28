@@ -1,7 +1,7 @@
 package scr.com.battleship;
 
-import scr.com.battleship.Ship.Ship;
 import scr.com.battleship.Ship.Orientation;
+import scr.com.battleship.Ship.Ship;
 
 import java.util.List;
 
@@ -32,7 +32,7 @@ public class Game {
             Board shootingBoard = player.getShootingBoard();
             Player enemyPlayer = getAnotherPlayer(player);
             display.printMessage(player.toString());
-            display.printBoard(playerBoard);
+//            display.printBoard(playerBoard);
             display.printBoard(shootingBoard);
             coordinates = input.getCoordinates();
             if (enemyBoard.isHit(coordinates)) {
@@ -45,12 +45,13 @@ public class Game {
 
             doesEnemyLose(enemyPlayer);
             if (gameIsRunning) {
+                display.printMessage(player.toString() + " destroy the other player ships");
                 display.printBoard(playerBoard);
                 display.printBoard(shootingBoard);
                 player = getAnotherPlayer(player);
             } else {
                 display.printBoard(shootingBoard);
-//                display.printCongratulations(player);
+                display.playerWin(player);
             }
         }
     }
@@ -79,23 +80,28 @@ public class Game {
         display.printMessage(player.toString());
         for (Ship ship : player.getShipsList()) {
             if (ship.getSize() != 1) {
-                display.printMessage("Place your " + ship + "! Size: " + ship.getSize()+"\n");
+                display.printMessage("Place your " + ship + "! Size: " + ship.getSize() + "\n");
                 display.printBoard(player.getPlayerBoard());
                 coordinates = input.getCoordinates();
                 display.askForOrientation();
                 orientation = input.getOrientation();
+//                while (orientation == null) {
+//                    orientation = input.getOrientation();
+//                }
                 validSpots = player.getPlayerBoard().getSpotsForShip(ship.getSize(), orientation, coordinates);
-                while (validSpots==null){
+                while (validSpots == null) {
                     coordinates = input.getCoordinates();
+                    display.askForOrientation();
+                    orientation = input.getOrientation();
                     validSpots = player.getPlayerBoard().getSpotsForShip(ship.getSize(), orientation, coordinates);
                 }
                 player.placeShip(ship, validSpots);
             } else {
-                display.printMessage("Place your " + ship + "! Size: " + ship.getSize()+"\n");
+                display.printMessage("Place your " + ship + "! Size: " + ship.getSize() + "\n");
                 display.printBoard(player.getPlayerBoard());
                 coordinates = input.getCoordinates();
                 validSpots = player.getPlayerBoard().getSpotsForShip(ship.getSize(), Orientation.RIGHT, coordinates);
-                if(validSpots==null){
+                if (validSpots == null) {
                     coordinates = input.getCoordinates();
                     validSpots = player.getPlayerBoard().getSpotsForShip(ship.getSize(), Orientation.RIGHT, coordinates);
                 }
