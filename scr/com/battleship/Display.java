@@ -83,15 +83,20 @@ public class Display {
         System.out.println("Choose orientation!");
         System.out.println("1 - Up, 2 - Right, 3 - Down, 4 - Left");
     }
+
     public void askForCoordinates() {
         System.out.println("Choose coordinates! (Example: C5 where 'C' is row and '5' is column):");
     }
+
     private void printBoardSigns(int size) {
         System.out.print("     ");
         for (int j = 1; j <= size; j++) {
-            if(j<9){
-            printMessage(j + "  ");
-        }else {printMessage(j + " ");}}
+            if (j < 9) {
+                printMessage(j + "  ");
+            } else {
+                printMessage(j + " ");
+            }
+        }
         printMessage("\n");
     }
 
@@ -104,4 +109,7 @@ public class Display {
         printMessage("\n");
     }
 
+    public void playerWin(Player player) {
+        System.out.println(player + " win !");
+    }
 }
