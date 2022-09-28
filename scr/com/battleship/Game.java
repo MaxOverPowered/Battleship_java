@@ -31,7 +31,7 @@ public class Game {
             Board playerBoard = player.getPlayerBoard();
             Board shootingBoard = player.getShootingBoard();
             Player enemyPlayer = getAnotherPlayer(player);
-            display.printMessage(player.toString() + " destroy the other player ships\n");
+            display.printMessage(player + " destroy the other player ships\n");
             display.printBoard(shootingBoard);
             coordinates = input.getCoordinates();
             if (enemyBoard.isHit(coordinates)) {
@@ -84,7 +84,7 @@ public class Game {
                 display.askForOrientation();
                 orientation = input.getOrientation();
                 validSpots = player.getPlayerBoard().getSpotsForShip(ship.getSize(), orientation, coordinates);
-                while (validSpots == null) {
+                while (validSpots.size() == 0 || orientation==null) {
                     coordinates = input.getCoordinates();
                     display.askForOrientation();
                     orientation = input.getOrientation();
@@ -101,7 +101,7 @@ public class Game {
                 display.printBoard(player.getPlayerBoard());
                 coordinates = input.getCoordinates();
                 validSpots = player.getPlayerBoard().getSpotsForShip(ship.getSize(), Orientation.RIGHT, coordinates);
-                if (validSpots == null) {
+                if (validSpots.size() == 0) {
                     coordinates = input.getCoordinates();
                     validSpots = player.getPlayerBoard().getSpotsForShip(ship.getSize(), Orientation.RIGHT, coordinates);
                 }

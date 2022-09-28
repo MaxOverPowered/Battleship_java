@@ -65,7 +65,6 @@ public class Board {
             }
         } catch (Exception ignored) {
             System.out.println("Try again");
-            return null;
         }
         return validSpots;
     }

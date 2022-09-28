@@ -34,7 +34,6 @@ public class Input {
             }
             sizeBord = scanner.nextInt();
         } while (validateBoardSize());
-        display.printMessageInNewLine(String.format("%d", sizeBord));
         return sizeBord;
     }
     public int readStartInput() {
@@ -50,7 +49,6 @@ public class Input {
             }
             menuOption = scanner.nextInt();
         } while (validateStartMenu());
-//        display.printMessageInNewLine(String.format("%d", sizeBord));
         return menuOption;
     }
 
@@ -128,8 +126,8 @@ public class Input {
     }
 
     public Orientation getOrientation() {
-        int chosenOrientation = scanner.nextInt();
         try {
+            int chosenOrientation = scanner.nextInt();
             switch (chosenOrientation) {
                 case 1 -> {
                     return Orientation.UP;
