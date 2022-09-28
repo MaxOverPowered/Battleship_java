@@ -8,6 +8,7 @@ public class Input {
     public final Scanner scanner;
     private final Display display;
     int sizeBord;
+    int menuOption;
 
 
     public Input() {
@@ -36,9 +37,28 @@ public class Input {
         display.printMessageInNewLine(String.format("%d", sizeBord));
         return sizeBord;
     }
+    public int readStartInput() {
+        do {
+            display.menu();
+            while (!scanner.hasNextInt()) {
+                String userScan = scanner.next();
+                if (!userScan.equalsIgnoreCase("quit")) {
+                    display.printMessageInNewLine("That is not a number,Try again");
+                } else {
+                    System.exit(0);
+                }
+            }
+            menuOption = scanner.nextInt();
+        } while (validateStartMenu());
+//        display.printMessageInNewLine(String.format("%d", sizeBord));
+        return menuOption;
+    }
 
     private boolean validateBoardSize() {
         return sizeBord < 10 || sizeBord > 20;
+    }
+    private boolean validateStartMenu() {
+        return menuOption <=0  || menuOption > 3;
     }
 
     public Coordinates getCoordinates() {

@@ -16,7 +16,7 @@ public class ShipPart {
 
     public void asSunk() {
         status = ShipStatus.SUNK;
-        sign = "⛪";
+        sign = "\uD83D\uDD4C";
     }
 
     public String getSign() {
