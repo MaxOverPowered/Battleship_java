@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Input {
     public final Scanner scanner;
     private final Display display;
-    int sizeBord ;
+    int sizeBord;
 
 
     public Input() {
@@ -113,19 +113,24 @@ public class Input {
     public Orientation getOrientation() {
 //        Scanner scanner = new Scanner(System.in);
         int chosenOrientation = scanner.nextInt();
-        switch (chosenOrientation) {
-            case 1 -> {
-                return Orientation.UP;
+        try {
+            switch (chosenOrientation) {
+                case 1 -> {
+                    return Orientation.UP;
+                }
+                case 2 -> {
+                    return Orientation.RIGHT;
+                }
+                case 3 -> {
+                    return Orientation.DOWN;
+                }
+                default -> {
+                    return Orientation.LEFT;
+                }
             }
-            case 2 -> {
-                return Orientation.RIGHT;
-            }
-            case 3 -> {
-                return Orientation.DOWN;
-            }
-            default -> {
-                return Orientation.LEFT;
-            }
+        } catch (Exception ignored) {
+            display.printMessageInNewLine("Something is wrong, Try again !");
+            return null;
         }
     }
 
