@@ -10,7 +10,7 @@ public class BattleshipGame {
         display.shipArt();
         boolean exit = false;
         do {
-            int menu = input.inputInt();
+            int menu = input.readStartInput();
             switch (menu) {
                 case 1 -> {
                     int boardSize = input.readInput();
@@ -20,7 +20,6 @@ public class BattleshipGame {
                 }
                 case 2 -> {
                     display.howToPlay();
-
 
                 }
                 case 0 -> {
