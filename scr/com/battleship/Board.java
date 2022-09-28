@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Board {
     private Player player;
-    private int size;
+    private final int size;
     private final Spot[][] spots;
 
     public Board(int size) {
@@ -18,13 +18,6 @@ public class Board {
 
     public Spot[][] getSpots() {
         return spots;
-    }
-//    public Spot getSpot(Coordinates coordinates) {
-//        return spots[coordinates.getX()][coordinates.getY()];
-//    }
-
-    public void setSize(int size) {
-        this.size = size;
     }
 
     public void setBoardSpotEmpty(List<Spot> spots) {
@@ -39,44 +32,42 @@ public class Board {
 
     public List<Spot> getSpotsForShip(int shipSize, Orientation orientation, Coordinates coordinates) {
         List<Spot> validSpots = new ArrayList<>();
-            try {
-                switch (orientation) {
-                    case RIGHT -> {
-                        for (int i = 0; i < shipSize; i++) {
-                            if (this.getSpots()[coordinates.getX()][coordinates.getY() + i].isEmpty()) {
-                                validSpots.add(this.getSpots()[coordinates.getX()][coordinates.getY() + i]);
-                            }
-                        }
-                    }
-                    case LEFT -> {
-                        for (int i = 0; i < shipSize; i++) {
-                            if (this.getSpots()[coordinates.getX()][coordinates.getY() - i].isEmpty()) {
-                                validSpots.add(this.getSpots()[coordinates.getX()][coordinates.getY() - i]);
-                            }
-                        }
-                    }
-                    case UP -> {
-                        for (int i = 0; i < shipSize; i++) {
-                            if (this.getSpots()[coordinates.getX() - i][coordinates.getY()].isEmpty()) {
-                                validSpots.add(this.getSpots()[coordinates.getX() - i][coordinates.getY()]);
-                            }
-                        }
-                    }
-                    case DOWN -> {
-                        for (int i = 0; i < shipSize; i++) {
-                            if (this.getSpots()[coordinates.getX() + i][coordinates.getY()].isEmpty()) {
-                                validSpots.add(this.getSpots()[coordinates.getX() + i][coordinates.getY()]);
-                            }
+        try {
+            switch (orientation) {
+                case RIGHT -> {
+                    for (int i = 0; i < shipSize; i++) {
+                        if (this.getSpots()[coordinates.getX()][coordinates.getY() + i].isEmpty()) {
+                            validSpots.add(this.getSpots()[coordinates.getX()][coordinates.getY() + i]);
                         }
                     }
                 }
-            } catch (Exception ignored) {
-                System.out.println("Try again");
-                return null;
-
-
+                case LEFT -> {
+                    for (int i = 0; i < shipSize; i++) {
+                        if (this.getSpots()[coordinates.getX()][coordinates.getY() - i].isEmpty()) {
+                            validSpots.add(this.getSpots()[coordinates.getX()][coordinates.getY() - i]);
+                        }
+                    }
+                }
+                case UP -> {
+                    for (int i = 0; i < shipSize; i++) {
+                        if (this.getSpots()[coordinates.getX() - i][coordinates.getY()].isEmpty()) {
+                            validSpots.add(this.getSpots()[coordinates.getX() - i][coordinates.getY()]);
+                        }
+                    }
+                }
+                case DOWN -> {
+                    for (int i = 0; i < shipSize; i++) {
+                        if (this.getSpots()[coordinates.getX() + i][coordinates.getY()].isEmpty()) {
+                            validSpots.add(this.getSpots()[coordinates.getX() + i][coordinates.getY()]);
+                        }
+                    }
+                }
             }
-            return validSpots;
+        } catch (Exception ignored) {
+            System.out.println("Try again");
+            return null;
+        }
+        return validSpots;
     }
 
     public Spot getSpot(Coordinates coordinates) {

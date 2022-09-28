@@ -32,7 +32,6 @@ public class Game {
             Board shootingBoard = player.getShootingBoard();
             Player enemyPlayer = getAnotherPlayer(player);
             display.printMessage(player.toString());
-//            display.printBoard(playerBoard);
             display.printBoard(shootingBoard);
             coordinates = input.getCoordinates();
             if (enemyBoard.isHit(coordinates)) {
@@ -85,9 +84,6 @@ public class Game {
                 coordinates = input.getCoordinates();
                 display.askForOrientation();
                 orientation = input.getOrientation();
-//                while (orientation == null) {
-//                    orientation = input.getOrientation();
-//                }
                 validSpots = player.getPlayerBoard().getSpotsForShip(ship.getSize(), orientation, coordinates);
                 while (validSpots == null) {
                     coordinates = input.getCoordinates();
@@ -95,13 +91,12 @@ public class Game {
                     orientation = input.getOrientation();
                     validSpots = player.getPlayerBoard().getSpotsForShip(ship.getSize(), orientation, coordinates);
                 }
-                System.out.println(player.placeShip(ship, validSpots));
-                while(!player.placeShip(ship, validSpots)){
+                while (!player.placeShip(ship, validSpots)) {
                     coordinates = input.getCoordinates();
                     display.askForOrientation();
                     orientation = input.getOrientation();
                     validSpots = player.getPlayerBoard().getSpotsForShip(ship.getSize(), orientation, coordinates);
-                };
+                }
             } else {
                 display.printMessage("Place your " + ship + "! Size: " + ship.getSize() + "\n");
                 display.printBoard(player.getPlayerBoard());

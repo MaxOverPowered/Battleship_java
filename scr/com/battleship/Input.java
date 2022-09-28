@@ -17,8 +17,7 @@ public class Input {
 
     public int inputInt() {
         display.menu();
-        int number = scanner.nextInt();
-        return number;
+        return scanner.nextInt();
     }
 
     public int readInput() {
@@ -42,10 +41,8 @@ public class Input {
         return sizeBord < 10 || sizeBord > 20;
     }
 
-
     public Coordinates getCoordinates() {
         String chosenCoord;
-//        Scanner scanner = new Scanner(System.in);
         do {
             display.askForCoordinates();
             chosenCoord = scanner.next();
@@ -111,7 +108,6 @@ public class Input {
     }
 
     public Orientation getOrientation() {
-//        Scanner scanner = new Scanner(System.in);
         int chosenOrientation = scanner.nextInt();
         try {
             switch (chosenOrientation) {

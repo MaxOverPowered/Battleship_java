@@ -26,7 +26,6 @@ public class Player {
         return playerBoard;
     }
 
-
     public Board getShootingBoard() {
         return shootingBoard;
     }
@@ -34,7 +33,6 @@ public class Player {
     public List<Ship> getShipsList() {
         return shipsList;
     }
-
 
     public void checkPlayerShips() {
         for (Ship ship : shipsList) {
@@ -49,18 +47,11 @@ public class Player {
     }
 
     private void removeSunkShip() {
-            Ship ship = shipsList.stream()
-                    .filter(Ship::isSunk)
-                    .findAny()
-                    .orElse(null);
-            shipsList.remove(ship);
-
-
-
-    }
-
-    public int getBoardSize() {
-        return boardSize;
+        Ship ship = shipsList.stream()
+                .filter(Ship::isSunk)
+                .findAny()
+                .orElse(null);
+        shipsList.remove(ship);
     }
 
     public boolean placeShip(Ship ship, List<Spot> validSpots) {
