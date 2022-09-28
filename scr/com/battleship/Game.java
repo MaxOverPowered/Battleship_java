@@ -95,7 +95,13 @@ public class Game {
                     orientation = input.getOrientation();
                     validSpots = player.getPlayerBoard().getSpotsForShip(ship.getSize(), orientation, coordinates);
                 }
-                player.placeShip(ship, validSpots);
+                System.out.println(player.placeShip(ship, validSpots));
+                while(!player.placeShip(ship, validSpots)){
+                    coordinates = input.getCoordinates();
+                    display.askForOrientation();
+                    orientation = input.getOrientation();
+                    validSpots = player.getPlayerBoard().getSpotsForShip(ship.getSize(), orientation, coordinates);
+                };
             } else {
                 display.printMessage("Place your " + ship + "! Size: " + ship.getSize() + "\n");
                 display.printBoard(player.getPlayerBoard());

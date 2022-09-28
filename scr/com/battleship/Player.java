@@ -11,6 +11,7 @@ public class Player {
     private final Board playerBoard;
     private final Board shootingBoard;
     private final int boardSize;
+    private Display display;
 
     public Player(int playerNumber, int boardSize) {
         this.boardSize = boardSize;
@@ -48,13 +49,12 @@ public class Player {
     }
 
     private void removeSunkShip() {
-//        try {
             Ship ship = shipsList.stream()
                     .filter(Ship::isSunk)
                     .findAny()
                     .orElse(null);
             shipsList.remove(ship);
-        //catch (NoSuchElementException ignored) {
+
 
 
     }
@@ -63,11 +63,14 @@ public class Player {
         return boardSize;
     }
 
-    public void placeShip(Ship ship, List<Spot> validSpots) {
+    public boolean placeShip(Ship ship, List<Spot> validSpots) {
         if (validSpots.size() == ship.getSize()) {
             ship.setShipParts(validSpots);
             playerBoard.setBoardSpotEmpty(validSpots);
+            return true;
         }
+        System.out.println("The ship cannot fit because of another ship");
+        return false;
     }
 
     private void assignShips() {
